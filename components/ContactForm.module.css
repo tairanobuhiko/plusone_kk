@@ -1,135 +1,71 @@
-@import url("https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200..900&display=swap");
-.body {
-  margin: 16px;
-  background-color: rgba(24, 118, 209, 0.7);
-  padding-bottom: 100px;
-  border-radius: 5px;
-  width: min(680px, 80vw);
-  height: min(700px, 80vh);
-}
-
-.contact {
-  width: 100%;
-  height: 100%;
-}
-
-.sectionHeader {
-  text-align: center;
-  margin: 0 auto;
-  padding-top: 10px;
-  font: bold 40px "Oswald", sans-serif;
-  color: #fff;
-  text-transform: uppercase;
-  letter-spacing: 6px;
-}
-
-.contactWrapper {
+.form {
+  background-color: var(--white);
+  border-radius: 20px;
+  padding: 40px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  margin: 0 auto;
-  padding: 20px;
-  position: relative;
-  max-width: 840px;
+  gap: 24px;
 }
 
-/* Left contact page */
-.formHorizontal {
-  /* float: left; */
-  max-width: 100%;
-  font-family: "Lato";
-  font-weight: 400;
+.row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.field {
   display: flex;
-  justify-content: center;
   flex-direction: column;
+  gap: 8px;
 }
 
-.formControl,
-.textarea {
+.field label {
+  font-weight: 900;
+}
+
+.field input,
+.field textarea {
   width: 100%;
-  background-color: #eaeaea;
-  color: #000000;
-  letter-spacing: 1px;
-  padding: 4px;
-  margin: 4px;
-  border: none;
+  font: inherit;
+  font-size: 16px;
+  color: var(--ink);
+  background-color: var(--bg);
+  border: 2px solid var(--line);
+  border-radius: 12px;
+  padding: 14px 16px;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
 }
 
-.textarea {
-  height: min(400px, 40vh);
+.field textarea {
+  resize: vertical;
+}
+
+.field input:focus,
+.field textarea:focus {
+  outline: none;
+  border-color: var(--blue);
+  background-color: var(--white);
+}
+
+.error {
+  color: #b3261e;
+  font-weight: 700;
 }
 
 .button {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
-  text-align: start;
+  text-align: center;
 }
 
-.sendButton {
-  margin-top: 15px;
-  height: 34px;
-  width: 300px;
-  overflow: hidden;
-  transition: all 0.2s ease-in-out;
-  background-color: #1876d1;
-  color: #ffffff;
-  border-radius: 3px;
+.button button {
+  min-width: 220px;
 }
 
-.sendButton:hover {
-  background-color: #025ab1;
-}
-
-/* Location, Phone, Email Section */
-.contactList {
-  list-style-type: none;
-  margin-left: -30px;
-  padding-right: 20px;
-}
-
-.listItem {
-  line-height: 4;
-  color: #aaa;
-}
-
-.contactText {
-  font: 300 18px "Lato", sans-serif;
-  letter-spacing: 1.9px;
-  color: #bbb;
-}
-
-.contactText a {
-  color: #bbb;
-  text-decoration: none;
-  transition-duration: 0.2s;
-}
-
-.contactText a:hover {
-  color: #fff;
-  text-decoration: none;
-}
-
-/* Begin Media Queries*/
-@media screen and (max-width: 850px) {
-  .contactWrapper {
-    display: flex;
-    flex-direction: column;
+@media (max-width: 639px) {
+  .form {
+    padding: 28px 20px;
   }
-}
 
-@media screen and (max-width: 569px) {
-  .sectionHeader {
-    font-size: xx-large;
-  }
-}
-
-@media screen and (max-width: 410px) {
-  .sectionHeader {
-    font-size: x-large;
-  }
-  .sendButton {
-    width: 99%;
+  .row {
+    grid-template-columns: minmax(0, 1fr);
   }
 }
