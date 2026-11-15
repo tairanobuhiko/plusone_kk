@@ -135,9 +135,10 @@
   color: var(--blue);
 }
 
+/* 同じ並びを 8 回置いているので、1 回分（100% ÷ 8）だけ動かして繰り返す */
 @keyframes slide {
   to {
-    transform: translateX(-50%);
+    transform: translateX(-12.5%);
   }
 }
 
@@ -213,57 +214,6 @@
 .service p {
   font-size: 14.5px;
   color: var(--muted);
-}
-
-/* ---------- 住宅診断 ---------- */
-.diagnosis {
-  position: relative;
-  overflow: hidden;
-  background-color: var(--blue);
-  color: var(--white);
-  padding: 96px 0;
-}
-
-.diagnosis::before {
-  content: "+";
-  position: absolute;
-  left: -0.12em;
-  bottom: -0.32em;
-  font-family: var(--font-impact), sans-serif;
-  font-size: 520px;
-  line-height: 1;
-  color: rgba(255, 255, 255, 0.06);
-}
-
-.diagnosis_inner {
-  position: relative;
-  display: grid;
-  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
-  gap: 64px;
-  align-items: center;
-}
-
-.diagnosis_title {
-  font-size: clamp(24px, 3.4vw, 40px);
-  font-weight: 900;
-  line-height: 1.55;
-}
-
-.diagnosis_title em {
-  font-style: normal;
-  color: var(--yellow);
-}
-
-.diagnosis_text {
-  margin: 20px 0 36px;
-  opacity: 0.88;
-}
-
-.diagnosis_photo img {
-  display: block;
-  width: 100%;
-  border-radius: 20px;
-  box-shadow: 16px 16px 0 var(--yellow);
 }
 
 /* ---------- 施工事例 ---------- */
@@ -369,14 +319,9 @@
 }
 
 @media (max-width: 800px) {
-  .diagnosis_inner,
   .greeting_inner {
     grid-template-columns: minmax(0, 1fr);
     gap: 40px;
-  }
-
-  .diagnosis_photo img {
-    box-shadow: 10px 10px 0 var(--yellow);
   }
 
   .works {
@@ -386,7 +331,6 @@
 
 @media (max-width: 639px) {
   .section,
-  .diagnosis,
   .greeting,
   .cta {
     padding: 64px 0;

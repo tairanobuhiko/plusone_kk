@@ -80,12 +80,6 @@ img {
   color: var(--blue);
 }
 
-.btn-yellow {
-  background-color: var(--yellow);
-  border-color: var(--yellow);
-  color: var(--ink);
-}
-
 /* 画面に入ったら現れる動き。JavaScript が動いたときだけ data-reveal が付く */
 [data-reveal="hidden"] {
   opacity: 0;
