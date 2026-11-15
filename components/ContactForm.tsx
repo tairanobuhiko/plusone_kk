@@ -1,21 +1,25 @@
 import React, { useState } from "react";
 import classes from "./ContactForm.module.css";
-import BasicModal from "./BasicModal";
+import StatusDialog from "./StatusDialog";
 
 const ContactForm = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
+  const [inputError, setInputError] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [modalMessage, setModalMessage] = useState("");
 
-  const onSendMessage = async (e: any) => {
+  const onSendMessage = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!name || !email || !message) {
-      alert("入力項目に不備があります。");
+    if (!name.trim() || !email.trim() || !message.trim()) {
+      setInputError(
+        "お名前、メールアドレス、お問い合わせ内容をすべて入力してください。"
+      );
       return;
     }
+    setInputError("");
     setIsLoading(true);
     setIsModalOpen(true);
     const failedMessage =
@@ -55,58 +59,60 @@ const ContactForm = () => {
   };
 
   return (
-    <div className={classes.body}>
-      <BasicModal
+    <>
+      <StatusDialog
         open={isModalOpen}
-        handleClose={handleClose}
-        isLoading={isLoading}
+        onClose={handleClose}
+        loading={isLoading}
         message={modalMessage}
       />
-      <section id="contact">
-        <h1 className={classes.sectionHeader}>お問い合わせ</h1>
-        <div className={classes.contactWrapper}>
-          <form className={classes.formHorizontal} role="form">
-            <div className={classes.formGroup}>
-              <input
-                type="text"
-                className={classes.formControl}
-                placeholder="NAME"
-                name="name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                required
-              ></input>
-              <input
-                type="email"
-                className={classes.formControl}
-                placeholder="EMAIL"
-                name="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-              ></input>
-            </div>
-            <textarea
-              className={classes.textarea}
-              name="message"
-              value={message}
-              onChange={(e) => setMessage(e.target.value)}
-              required
-            ></textarea>
-            <div className={classes.button}>
-              <button
-                className={classes.sendButton}
-                type="submit"
-                value="SEND"
-                onClick={onSendMessage}
-              >
-                送信
-              </button>
-            </div>
-          </form>
+      <form className={classes.form} onSubmit={onSendMessage} noValidate>
+        <div className={classes.row}>
+          <div className={classes.field}>
+            <label htmlFor="contact-name">お名前</label>
+            <input
+              id="contact-name"
+              type="text"
+              name="name"
+              autoComplete="name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
+          </div>
+          <div className={classes.field}>
+            <label htmlFor="contact-email">メールアドレス</label>
+            <input
+              id="contact-email"
+              type="email"
+              name="email"
+              autoComplete="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </div>
         </div>
-      </section>
-    </div>
+        <div className={classes.field}>
+          <label htmlFor="contact-message">お問い合わせ内容</label>
+          <textarea
+            id="contact-message"
+            name="message"
+            rows={8}
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
+          />
+        </div>
+        {inputError && (
+          <p className={classes.error} role="alert">
+            {inputError}
+          </p>
+        )}
+        <div className={classes.button}>
+          <button className="btn btn-primary" type="submit">
+            送信
+          </button>
+        </div>
+      </form>
+    </>
   );
 };
 

@@ -1,0 +1,152 @@
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  height: var(--header-height);
+  background-color: var(--white);
+  border-bottom: 1px solid var(--line);
+}
+
+.inner {
+  max-width: var(--content-width);
+  height: 100%;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+/* ロゴは元の大きさ（261×123）より小さく表示する */
+.logo img {
+  height: 44px;
+  width: auto;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  font-weight: 700;
+  font-size: 15px;
+}
+
+.link {
+  position: relative;
+  padding: 8px 0;
+}
+
+.link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 2px;
+  height: 3px;
+  background-color: var(--yellow);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.25s ease;
+}
+
+.link:hover::after {
+  transform: scaleX(1);
+}
+
+.contact {
+  background-color: var(--blue);
+  color: var(--white);
+  padding: 10px 24px;
+  border-radius: 999px;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.contact:hover {
+  transform: translateY(-2px);
+  background-color: var(--ink);
+}
+
+.toggle {
+  display: none;
+  width: 44px;
+  height: 44px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+}
+
+.toggle span {
+  display: block;
+  width: 26px;
+  height: 3px;
+  background-color: var(--blue);
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+.toggle[aria-expanded="true"] span:nth-child(1) {
+  transform: translateY(9px) rotate(45deg);
+}
+
+.toggle[aria-expanded="true"] span:nth-child(2) {
+  opacity: 0;
+}
+
+.toggle[aria-expanded="true"] span:nth-child(3) {
+  transform: translateY(-9px) rotate(-45deg);
+}
+
+@media (max-width: 639px) {
+  .toggle {
+    display: flex;
+  }
+
+  .nav {
+    position: absolute;
+    top: var(--header-height);
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding: 8px 20px 24px;
+    background-color: var(--white);
+    border-bottom: 1px solid var(--line);
+    font-size: 17px;
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(-8px);
+    transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
+  }
+
+  .nav[data-open="true"] {
+    visibility: visible;
+    opacity: 1;
+    transform: none;
+  }
+
+  .link {
+    padding: 16px 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .link::after {
+    display: none;
+  }
+
+  .contact {
+    margin-top: 20px;
+    padding: 14px 24px;
+    text-align: center;
+  }
+}
