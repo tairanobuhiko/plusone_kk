@@ -43,7 +43,7 @@ describe("施工事例", () => {
 });
 
 describe("トップページ", () => {
-  it("冒頭の見出し、事業 4 種、住宅診断、問い合わせ先を表示する", () => {
+  it("冒頭の見出し、事業 4 種、問い合わせ先を表示する", () => {
     const { container } = render(<Home />);
     expect(
       screen.getByRole("heading", { level: 1, name: "暮らしに、プラスワン。" })
@@ -51,8 +51,9 @@ describe("トップページ", () => {
     ["住宅内装リフォーム", "店舗改装", "外構工事", "水廻り工事"].forEach((title) => {
       expect(screen.getByRole("heading", { level: 3, name: title })).toBeInTheDocument();
     });
-    expect(screen.getByRole("heading", { name: /住宅診断/ })).toBeInTheDocument();
     expect(container.querySelector("#services")).not.toBeNull();
+    // 住宅診断は取りやめたので、どこにも出さない
+    expect(container).not.toHaveTextContent("住宅診断");
     // 写真つきの施工事例が無い間は、施工事例と数字のブロックを出さない
     expect(container.querySelector("#works")).toBeNull();
     expect(screen.queryByText("写真準備中")).not.toBeInTheDocument();

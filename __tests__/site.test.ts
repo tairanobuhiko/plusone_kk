@@ -42,6 +42,10 @@ describe("会社の情報", () => {
     SERVICES.forEach((s) => expect(s.image.startsWith("/")).toBe(true));
   });
 
+  it("サイトの説明文に、取りやめた住宅診断を書かない", () => {
+    expect(SITE.description).not.toContain("住宅診断");
+  });
+
   it("電話番号は会社概要と同じ", () => {
     expect(SITE.tel).toBe("027-212-8093");
   });

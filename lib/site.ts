@@ -4,7 +4,7 @@ import { WORKS } from "@/data/works";
 export const SITE = {
   name: "Plus One株式会社",
   description:
-    "群馬県前橋市の建築・内装工事会社、Plus One株式会社です。住宅内装リフォーム、店舗改装、外構工事、水廻り工事、住宅診断を承ります。",
+    "群馬県前橋市の建築・内装工事会社、Plus One株式会社です。住宅内装リフォーム、店舗改装、外構工事、水廻り工事を承ります。",
   url: "https://plusone-kk.vercel.app",
   tel: "027-212-8093",
   fax: "027-212-8049",
